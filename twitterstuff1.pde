@@ -14,6 +14,7 @@ ArrayList<TweetCircle> circles;
 int circleDiameter = 25;
 int textWidth = 200;
 int rectWidth = 215;
+int rectHeight = 100;
 void setup()
 {
 
@@ -161,17 +162,26 @@ for(int i =0; i < circles.size(); i++){
 if(hoverNow){
 drawHInfo(twtToSend,xOreintation);
 }
+
 }
 //the thing that draws the box
 void drawHInfo(TweetCircle twtCrcl, int side){
       float c1 = twtCrcl.getX();
-     float c2 = twtCrcl.getY();
+      float c2 = twtCrcl.getY();
+      float c3 = 5;//Y displacement value 
+      int c4 = 5;//text indent to ensure it doesnt sit on the outline
+      //checks if the box is out of stage
+      if(c2 + rectHeight >= height){
+        //moves the box up so that it sits neatly above the stage
+      c3 = height -(rectHeight + c2 +3);
+      }
+     
       stroke(153, 157, 163);
       fill(255,255,255);//rectangle colour
-      rect( c1 +side,c2+5, rectWidth,100);
+      rect( c1 +side,c2+c3, rectWidth,rectHeight);
       stroke(212,40,40);
       fill(0,0,0);// text colour
-      text(twtCrcl.getTweet(),  c1+side,c2+5, textWidth,100); 
+      text(twtCrcl.getTweet(),  c1+side+c4,c2+c3, textWidth,rectHeight); 
       
 
 
