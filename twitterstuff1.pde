@@ -61,7 +61,7 @@ circles.add(twtcrcl);
       while(checkHIT(randcoords,circleWidth) == false){
                 randcoords  = new PVector(random(35,735),random(35,565));
                //this is here because processing crashes after a certain number of loops, however im 90% sure i dont need it since i fixed some things but lets just be sure
-                if(c1 > 20){break;}else{c1++;}
+                if(c1 > 20){println("over20");break;}else{c1++;}
       }
         TweetCircle twtcrcl = new TweetCircle(status, randcoords,circleWidth);
         currentTweet++;
@@ -168,6 +168,7 @@ void drawHInfo(TweetCircle twtCrcl){
       //displayIconSize is icon width
       float tempIconX;
       float tempGenericY = borderWidth;
+      float tempOutOfFrameY = 0;
       float tempTextX;
       displayIcon = twtCrcl.getImage();
       //check if the box is right or left facing
@@ -198,7 +199,7 @@ void drawHInfo(TweetCircle twtCrcl){
       fill(0,0,0);// text colour
       text(twtCrcl.getTweet(),tempX+tempTextX,tempY+tempGenericY, textWidth,rectHeight); 
       if(displayIcon != null){
-      image(displayIcon,tempX+tempIconX,tempY+tempGenericY*2,displayIconSize,displayIconSize);
+      image(displayIcon,tempX+tempIconX,tempY+tempGenericY+3,displayIconSize,displayIconSize);
       }
 
 }
