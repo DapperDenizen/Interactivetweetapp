@@ -27,6 +27,9 @@ public String getTweet(){
 return status.getText();
 
 }
+public PImage getImage(){
+return loadImage(status.getUser().getMiniProfileImageURL());
+}
 void setup(){ }
 void draw() {
   ellipse(coordX,coordY, circleWidth, circleWidth);

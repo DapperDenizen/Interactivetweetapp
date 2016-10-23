@@ -11,9 +11,11 @@ String searchString = "trump";
 List<Status> tweets;
 int currentTweet;
 ArrayList<TweetCircle> circles;
+PImage displayIcon;
 int circleDiameter = 25;
+int displayIconSize = 40;// used as both icon size and extra text indent
 int textWidth = 200;
-int rectWidth = 215;
+int rectWidth = 260;
 int rectHeight = 100;
 void setup()
 {
@@ -131,59 +133,73 @@ void draw()
   fill(3);
 rect(-3, -3, width+4, height+4);
 fill(3);
+//check for hover
 for(int i =0; i < circles.size(); i++){
      TweetCircle twtCrcl = circles.get(i);
      twtCrcl.draw();
-     float c1 = twtCrcl.getX();
-     float c2 = twtCrcl.getY();
+     float tempX = twtCrcl.getX();
+     float tempY = twtCrcl.getY();
       float circleWidth = twtCrcl.getWIDTH();
       if(
     //mouse X
-    mouseX  <= c1 +circleWidth && 
-    mouseX  >= c1 -circleWidth && 
+    mouseX  <= tempX +circleWidth && 
+    mouseX  >= tempX -circleWidth && 
       //mouse Y
-   mouseY >= c2 -circleWidth &&  
-    mouseY  <= c2 +circleWidth 
+   mouseY >= tempY -circleWidth &&  
+    mouseY  <= tempY +circleWidth 
       
       ){
-        if(c1 > width/2){
-          hoverNow = true;
-          twtToSend = twtCrcl; 
-          xOreintation = -rectWidth -5;
-          
-      }else{
-          hoverNow = true;
-          twtToSend = twtCrcl; 
-          xOreintation = 5;
-      }
-        fill(3);
+        hoverNow = true;
+        twtToSend = twtCrcl; 
    }
 }
 if(hoverNow){
-drawHInfo(twtToSend,xOreintation);
+drawHInfo(twtToSend);
 }
 
 }
 //the thing that draws the box
-void drawHInfo(TweetCircle twtCrcl, int side){
-      float c1 = twtCrcl.getX();
-      float c2 = twtCrcl.getY();
-      float c3 = 5;//Y displacement value 
-      int c4 = 5;//text indent to ensure it doesnt sit on the outline
+void drawHInfo(TweetCircle twtCrcl){
+      //temp variables
+      float tempX = twtCrcl.getX();
+      float tempY = twtCrcl.getY();
+      float orientationIndent = 0;
+      float borderWidth = 3;
+      //displayIconSize is icon width
+      float tempIconX;
+      float tempGenericY = borderWidth;
+      float tempTextX;
+      displayIcon = twtCrcl.getImage();
+      //check if the box is right or left facing
+            if(tempX > width/2){
+              //right side of screen
+              orientationIndent = -rectWidth;
+              tempIconX =  orientationIndent + borderWidth;
+              tempTextX =  orientationIndent + borderWidth*2 + displayIconSize;
+              
+            }else{
+              //left side of screen
+              orientationIndent = 0;
+              tempIconX =   borderWidth;
+              tempTextX =  borderWidth*2 + displayIconSize;
+            }
       //checks if the box is out of stage
-      if(c2 + rectHeight >= height){
+      if(tempY + rectHeight+tempGenericY >= height){
         //moves the box up so that it sits neatly above the stage
-      c3 = height -(rectHeight + c2 +3);
+        tempGenericY = height -(rectHeight + tempY +tempGenericY);
       }
+     
+     //println(orientationIndent+" / " + rectWidth);//REMOVEthis
      
       stroke(153, 157, 163);
       fill(255,255,255);//rectangle colour
-      rect( c1 +side,c2+c3, rectWidth,rectHeight);
+      rect( tempX + orientationIndent,tempY+tempGenericY, rectWidth,rectHeight);
       stroke(212,40,40);
       fill(0,0,0);// text colour
-      text(twtCrcl.getTweet(),  c1+side+c4,c2+c3, textWidth,rectHeight); 
-      
-
+      text(twtCrcl.getTweet(),tempX+tempTextX,tempY+tempGenericY, textWidth,rectHeight); 
+      if(displayIcon != null){
+      image(displayIcon,tempX+tempIconX,tempY+tempGenericY*2,displayIconSize,displayIconSize);
+      }
 
 }
 void getNewTweets()
