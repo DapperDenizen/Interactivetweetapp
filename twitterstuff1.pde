@@ -7,7 +7,8 @@ import java.util.*;
 
 
 Twitter twitter;
-String searchString = "trump";
+String democratString = "trump";
+String republicanString = "Clinton";
 List<Status> tweets;
 int currentTweet;
 ArrayList<TweetCircle> circles;
@@ -17,6 +18,7 @@ int displayIconSize = 40;// used as both icon size and extra text indent
 int textWidth = 200;
 int rectWidth = 260;
 int rectHeight = 100;
+
 void setup()
 {
 
@@ -36,45 +38,13 @@ TwitterFactory tf = new TwitterFactory(cb.build());
 
     twitter = tf.getInstance();
 
-    getNewTweets();
-    currentTweet = 0;
-    PVector randcoords;
-    int circleWidth = 25;
-
-   
-
-while(currentTweet < tweets.size())
-{
-  //generate points that dont collide but are random and different each time
-
-randcoords  = new PVector(random(35,735),random(35,565));
- Status status = tweets.get(currentTweet);
- //
-//check
-if(checkHIT(randcoords,circleWidth)){
-//make circle
-TweetCircle twtcrcl = new TweetCircle(status, randcoords,circleWidth);
-currentTweet++;
-circles.add(twtcrcl);
-}  else{
-  int c1 = 0;
-      while(checkHIT(randcoords,circleWidth) == false){
-                randcoords  = new PVector(random(35,735),random(35,565));
-               //this is here because processing crashes after a certain number of loops, however im 90% sure i dont need it since i fixed some things but lets just be sure
-                if(c1 > 20){println("over20");break;}else{c1++;}
-      }
-        TweetCircle twtcrcl = new TweetCircle(status, randcoords,circleWidth);
-        currentTweet++;
-        circles.add(twtcrcl);
-      }
+  //call 1
+  generateCircles(democratString,35,width/2-35);
+  //call 2
+  generateCircles(republicanString,width/20+35,width-35);
+  
 }
 
-for(int i =0; i < circles.size(); i++){
-     TweetCircle twtCrcl = circles.get(i);
-     twtCrcl.draw();
-    
-}
-}
 
    //check if any points collide
 private boolean checkHIT(PVector me, int givenWidth){
@@ -132,6 +102,7 @@ void draw()
   int xOreintation = 0;
   fill(3);
 rect(-3, -3, width+4, height+4);
+line(width/2,0,width/2,height);
 fill(3);
 //check for hover
 for(int i =0; i < circles.size(); i++){
@@ -189,9 +160,7 @@ void drawHInfo(TweetCircle twtCrcl){
         //moves the box up so that it sits neatly above the stage
         tempGenericY = height -(rectHeight + tempY +tempGenericY);
       }
-     
-     //println(orientationIndent+" / " + rectWidth);//REMOVEthis
-     
+  
       stroke(153, 157, 163);
       fill(255,255,255);//rectangle colour
       rect( tempX + orientationIndent,tempY+tempGenericY, rectWidth,rectHeight);
@@ -203,7 +172,48 @@ void drawHInfo(TweetCircle twtCrcl){
       }
 
 }
-void getNewTweets()
+//Generates the tweet circles
+void generateCircles(String searchString ,int min, int max){
+    
+  getNewTweets(searchString);
+    currentTweet = 0;
+    PVector randcoords;
+    int circleWidth = 25;
+  
+  
+while(currentTweet < tweets.size())
+{
+  //generate points that dont collide but are random and different each time
+
+randcoords  = new PVector(random(min,max),random(35,height-35));
+ Status status = tweets.get(currentTweet);
+//check
+if(checkHIT(randcoords,circleWidth)){
+//make circle
+TweetCircle twtcrcl = new TweetCircle(status, randcoords,circleWidth);
+currentTweet++;
+circles.add(twtcrcl);
+}  else{
+  int c1 = 0;
+      while(checkHIT(randcoords,circleWidth) == false){
+                randcoords  = new PVector(random(min,max),random(35,height-35));
+               
+               //this is here because processing crashes after a certain number of loops, however im 90% sure i dont need it since i fixed some things but lets just be sure
+                //if(c1 > 20){println("over20");break;}else{c1++;}
+      }
+        TweetCircle twtcrcl = new TweetCircle(status, randcoords,circleWidth);
+        currentTweet++;
+        circles.add(twtcrcl);
+      }
+}
+
+for(int i =0; i < circles.size(); i++){
+     TweetCircle twtCrcl = circles.get(i);
+     twtCrcl.draw();
+    
+}
+}
+void getNewTweets(String searchString)
 {
     try
     {
