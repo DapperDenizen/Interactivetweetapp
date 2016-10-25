@@ -2,15 +2,15 @@ public class TweetCircle {
 Status status;
 float coordX;
 float coordY;
-int circleWidth;
- TweetCircle( Status twt, PVector coords, int circleWidth){
-   this.circleWidth = circleWidth;
+float circleWidth;
+ TweetCircle( Status twt, PVector coords, int circleWidth, int maxRetweets){
    strokeWeight(3);
    stroke(212,40,40);
    fill(3);
 status = twt;
 coordX = coords.x;
 coordY = coords.y;
+this.circleWidth = map(status.getRetweetCount(),0,maxRetweets,circleWidth,55);
 ellipse(coordX,coordY, circleWidth, circleWidth);
 
 }
