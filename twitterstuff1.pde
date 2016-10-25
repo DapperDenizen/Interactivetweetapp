@@ -41,7 +41,7 @@ TwitterFactory tf = new TwitterFactory(cb.build());
   //call 1
   generateCircles(democratString,35,width/2-35);
   //call 2
-  generateCircles(republicanString,width/20+35,width-35);
+  generateCircles(republicanString,width/2+35,width-35);
   
 }
 
