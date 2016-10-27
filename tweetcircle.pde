@@ -3,10 +3,14 @@ Status status;
 float coordX;
 float coordY;
 float circleWidth;
- TweetCircle( Status twt, PVector coords, int circleWidth, int maxRetweets){
+color ringColour;
+color backgroundColour;
+ TweetCircle( Status twt, PVector coords, int circleWidth, int maxRetweets, color ringColour, color backgroundColour){
+   this.ringColour = ringColour;
+   this.backgroundColour =backgroundColour;
    strokeWeight(3);
-   stroke(212,40,40);
-   fill(3);
+   stroke(ringColour);
+   fill(backgroundColour);
 status = twt;
 coordX = coords.x;
 coordY = coords.y;
@@ -32,6 +36,9 @@ return loadImage(status.getUser().getMiniProfileImageURL());
 }
 void setup(){ }
 void draw() {
+  strokeWeight(3);
+   stroke(ringColour);
+   fill(backgroundColour);
   ellipse(coordX,coordY, circleWidth, circleWidth);
   }
  

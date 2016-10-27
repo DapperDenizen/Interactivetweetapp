@@ -19,13 +19,15 @@ int textWidth = 200;
 int rectWidth = 260;
 int rectHeight = 100;
 int maxRetweets; //this represents the maximum retweets present in
-
+color democratBlue = color(24, 81, 173);
+color rebulicanRed = color(214, 19, 19);
+color backgroundColour = color(0, 0, 0);
 void setup()
 {
 
   circles = new ArrayList();
   size(800, 600);
-  background(3);
+  background(backgroundColour);
 
   //config builder
   ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -40,9 +42,9 @@ void setup()
   twitter = tf.getInstance();
 
   //call 1
-  generateCircles(democratString, 35, width/2-35);
+  generateCircles(democratString, 35, width/2-35, democratBlue);
   //call 2
-  generateCircles(republicanString, width/2+35, width-35);
+  generateCircles(republicanString, width/2+35, width-35, rebulicanRed);
 }
 
 
@@ -102,10 +104,13 @@ void draw()
   boolean hoverNow= false;
   TweetCircle twtToSend= null; 
   int xOreintation = 0;
-  fill(3);
-  rect(-3, -3, width+4, height+4);
+  fill(backgroundColour);
+  stroke(backgroundColour);
+  rect(0, 0, width, height);
+  stroke(255, 255, 255);
   line(width/2, 0, width/2, height);
-  fill(3);
+  stroke(backgroundColour);
+
   //check for hover
   for (int i =0; i < circles.size (); i++) {
     TweetCircle twtCrcl = circles.get(i);
@@ -117,7 +122,7 @@ void draw()
     //mouse X
     mouseX  <= tempX +circleWidth && 
       mouseX  >= tempX -circleWidth && 
-      //mouse Y
+    //mouse Y
     mouseY >= tempY -circleWidth &&  
       mouseY  <= tempY +circleWidth 
 
@@ -172,7 +177,7 @@ void drawHInfo(TweetCircle twtCrcl) {
   }
 }
 //Generates the tweet circles
-void generateCircles(String searchString, int min, int max) {
+void generateCircles(String searchString, int min, int max, color colour) {
 
   getNewTweets(searchString);
   currentTweet = 0;
@@ -199,7 +204,7 @@ void generateCircles(String searchString, int min, int max) {
     //check
     if (checkHIT(randcoords, circleWidth)) {
       //make circle
-      TweetCircle twtcrcl = new TweetCircle(status, randcoords, circleWidth,largestNumber);
+      TweetCircle twtcrcl = new TweetCircle(status, randcoords, circleWidth, largestNumber, colour, backgroundColour);
       currentTweet++;
       circles.add(twtcrcl);
     } else {
@@ -210,7 +215,7 @@ void generateCircles(String searchString, int min, int max) {
         //this is here because processing crashes after a certain number of loops, however im 90% sure i dont need it since i fixed some things 
         //if(c1 > 20){println("over20");break;}else{c1++;}
       }
-      TweetCircle twtcrcl = new TweetCircle(status, randcoords, circleWidth,largestNumber);
+      TweetCircle twtcrcl = new TweetCircle(status, randcoords, circleWidth, largestNumber, colour, backgroundColour);
       currentTweet++;
       circles.add(twtcrcl);
     }
