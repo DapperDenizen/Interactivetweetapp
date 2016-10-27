@@ -118,19 +118,12 @@ void draw()
     float tempX = twtCrcl.getX();
     float tempY = twtCrcl.getY();
     float circleWidth = twtCrcl.getWIDTH();
-    if (
-    //mouse X
-    mouseX  <= tempX +circleWidth && 
-      mouseX  >= tempX -circleWidth && 
-    //mouse Y
-    mouseY >= tempY -circleWidth &&  
-      mouseY  <= tempY +circleWidth 
-
-      ) {
+    if ( dist(mouseX, mouseY, tempX, tempY) <= circleWidth) {
       hoverNow = true;
       twtToSend = twtCrcl;
     }
   }
+
   if (hoverNow) {
     drawHInfo(twtToSend);
   }
