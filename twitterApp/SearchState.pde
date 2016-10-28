@@ -5,7 +5,7 @@ display dynamic search
 class SearchState extends State {
    
    Button trump = new Button(50, 100, "trump");
-   Button clinton = new Button(250, 100, "clinton");
+   Button clinton = new Button(450, 100, "clinton");
   
    void drawState(){
       trump.display();
@@ -24,12 +24,12 @@ class SearchState extends State {
    }
    
    int getNum(){
-      if(button1.pressed()){
+      if(trump.pressed()){
          return 0;  //return 0 when trump is pressed
       }
-      if(button2.pressed()){
+      if(clinton.pressed()){
          return 1;   //return 1 when clinton is pressed
       }
-      return 300;
+      return 999;
    }
 }
