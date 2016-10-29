@@ -11,11 +11,11 @@ class Button{
    boolean rectOver = false;
    
    Button(int _rectX, int _rectY, String _label){
-       rectX = _rectX;
-       rectY = _rectY;
-       label = _label;
-       rectColor = color(200, 0, 0);
-       rectHighlight = color(255, 0, 0);
+       this.rectX = _rectX;
+       this.rectY = _rectY;
+       this.label = _label;
+       this.rectColor = color(200, 0, 0);
+       this.rectHighlight = color(255, 0, 0);
    }
    
    void display(){

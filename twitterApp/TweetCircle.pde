@@ -7,9 +7,9 @@ public class TweetCircle {
 
  TweetCircle( Status twt, PVector coords, int circleWidth, int maxRetweets, color ringColour){
     this.ringColour = ringColour;
-    status = twt;
-    coordX = coords.x;
-    coordY = coords.y;
+    this.status = twt;
+    this.coordX = coords.x;
+    this.coordY = coords.y;
     this.circleWidth = map(status.getRetweetCount(),0,maxRetweets,circleWidth,55);
   }
   

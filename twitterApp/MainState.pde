@@ -30,7 +30,7 @@ class MainState extends State{
   Button stats = new Button(480, 555, "stats"); //button to go to stats screen
   
   MainState(int _num){
-      num = _num;
+      this.num = _num;
       currentTweet = 0;
       getNewTweets(num);
   }
