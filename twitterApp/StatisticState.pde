@@ -4,13 +4,20 @@ display statistics
 
 class StatisticState extends State {
   
-   int num; 
-  
-   Button back = new Button(600, 600, "back");
+   int num;
+   int currentTweet = 0;
    
+   StatisticState(int _num){
+      this.num = _num; 
+      getNewTweets(_num);
+   }
+  
+   Button back = new Button(600, 550, "back");
    
    void drawState(){
-      text("statistics", 10, 10); 
+       if(currentTweet >= tweets.size()){
+          currentTweet = 0;
+       }
       back.display();
    }
    
@@ -19,10 +26,6 @@ class StatisticState extends State {
           return new SearchState(); 
        }
        return this;
-   }
-   
-   void getTweets(int num){
-       tweets.getNewTweets(num);
    }
    
 }

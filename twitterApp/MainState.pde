@@ -5,9 +5,7 @@ display tweets with circles
 class MainState extends State{
   
   PVector randcoords;
-  String searchString[] = {"trump", "clinton"};
   int num;
-  int currentTweet;
   
   //for circles
   ArrayList<TweetCircle> circles;
@@ -21,18 +19,13 @@ class MainState extends State{
   color democratBlue = color(24, 81, 173);
   color rebulicanRed = color(214, 19, 19);
   
-  Query query;
-  QueryResult result;
-  List<Status> tweets;
-  Status status;
-  
   Button back = new Button(600, 555, "back"); //button to go back to search screen
   Button stats = new Button(480, 555, "stats"); //button to go to stats screen
   
   MainState(int _num){
       this.num = _num;
       currentTweet = 0;
-      getNewTweets(num);
+      getNewTweets(_num);
   }
   
   void drawState(){
@@ -46,7 +39,7 @@ class MainState extends State{
          return new SearchState(); 
       }
       if(stats.pressed()){ //go to statistics screen
-         return new StatisticState(); 
+         return new StatisticState(this.num); 
       }
       return this;
   }//method end
@@ -58,18 +51,6 @@ class MainState extends State{
     //call 2
     generateCircles(searchString[1], width/2+35, width-35, rebulicanRed); 
   }
-  
-  //to get tweets related to searchString
-  void getNewTweets(int num){
-      try{
-         query = new Query(searchString[num]);
-         result = twitter.search(query);
-         tweets = result.getTweets();
-      } catch (TwitterException te) {
-         System.out.println("[ERROR] :" + te.getMessage());
-         System.exit(-1);
-      }
-   }//method end
 
    void displayTweets(){
       setCircles();
@@ -84,7 +65,7 @@ class MainState extends State{
       stroke(0);
     
       //check for hover
-      for (int i =0; i < circles.size (); i++) {
+      for (int i =0; i < circles.size(); i++) {
         TweetCircle twtCrcl = circles.get(i);
         twtCrcl.draw();
         float tempX = twtCrcl.getX();
@@ -95,14 +76,13 @@ class MainState extends State{
           twtToSend = twtCrcl;
         }
       }
-    
+      
       if (hoverNow) {
         drawHInfo(twtToSend);
       }
 }
 
   void generateCircles(String searchString, int min, int max, color colour) {
-
     currentTweet = 0;
     PVector randcoords;
     int circleWidth = 25;
@@ -110,7 +90,7 @@ class MainState extends State{
     // find highest no of retweets
     while (currentTweet < tweets.size ())
     {
-      status = tweets.get(currentTweet);
+      status = getStatus(currentTweet);
       if ( status.getRetweetCount() > largestNumber) {
         largestNumber = status.getRetweetCount();
       }
@@ -122,7 +102,7 @@ class MainState extends State{
       //generate points that dont collide but are random and different each time
   
         randcoords  = new PVector(random(min, max), random(35, height-35));
-      status = tweets.get(currentTweet);
+      status = getStatus(currentTweet);
   
       //check
       if (checkHIT(randcoords, circleWidth)) {
@@ -237,7 +217,7 @@ private boolean checkHIT(PVector me, int givenWidth) {
     }
 
     return true;
-  } else { 
+  } else {
     return true;
   }
 }

@@ -4,6 +4,7 @@ public class TweetCircle {
   float coordY;
   float circleWidth;
   color ringColour;
+  
 
  TweetCircle( Status twt, PVector coords, int circleWidth, int maxRetweets, color ringColour){
     this.ringColour = ringColour;
