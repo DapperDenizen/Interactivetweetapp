@@ -16,7 +16,7 @@ ArrayList<TweetCircle> circles;
 PImage displayIcon;
 int circleDiameter = 25;
 int displayIconSize = 40;// used as both icon size and extra text indent
-int textWidth = 200;
+int textWidth = 210;
 int rectWidth = 260;
 int rectHeight = 100;
 int maxRetweets; //this represents the maximum retweets present in
@@ -48,9 +48,9 @@ void setup()
   twitter = tf.getInstance();
 
   //call 1
-  generateCircles(democratString, 35, width/2-35, democratBlue);
+  //generateCircles(democratString, 35, width/2-35, democratBlue);
   //call 2
-  generateCircles(republicanString, width/2+35, width-35, rebulicanRed);
+  //generateCircles(republicanString, width/2+35, width-35, rebulicanRed);
 }
 
 
@@ -107,148 +107,158 @@ private boolean checkHIT(PVector me, int givenWidth) {
 
 void draw()
 {
-  boolean hoverNow= false;
-  TweetCircle twtToSend= null; 
-  int xOreintation = 0;
-  fill(backgroundColour);
-  stroke(backgroundColour);
-  rect(0, 0, width, height);
-  stroke(255, 255, 255);
-  line(width/2, 0, width/2, height);
-  stroke(backgroundColour);
-
-  //check for hover
-  for (int i =0; i < circles.size (); i++) {
-    TweetCircle twtCrcl = circles.get(i);
-    twtCrcl.dislpay();// draw function
-    float tempX = twtCrcl.getX();
-    float tempY = twtCrcl.getY();
-    float circleWidth = twtCrcl.getWIDTH();
-    if ( dist(mouseX, mouseY, tempX, tempY) <= circleWidth) {
-      hoverNow = true;
-      twtToSend = twtCrcl;
-    }
-  }
-
-  if (hoverNow) {
-    drawHInfo(twtToSend);
-  }
   if (state != null) {
     if (state.getDone()) {
+      if (state.getType().equals("search")) {
+        // get strings
+        
+        //call 1 (dem)
+        generateCircles(democratString, 35, width/2-35, democratBlue);
+        //call 2 (republic)
+        generateCircles(republicanString, width/2+35, width-35, rebulicanRed);
+      }
       state = state.newState();
       if (state != null) {
         state.displayState();
       }
-        } else {
-        state.displayState();
-      }
-    }
-  }
-  //the thing that draws the box
-  void drawHInfo(TweetCircle twtCrcl) {
-    //temp variables
-    float tempX = twtCrcl.getX();
-    float tempY = twtCrcl.getY();
-    float orientationIndent = 0;
-    float borderWidth = 3;
-    //displayIconSize is icon width
-    float tempIconX;
-    float tempGenericY = borderWidth;
-    float tempOutOfFrameY = 0;
-    float tempTextX;
-    displayIcon = twtCrcl.getImage();
-    //check if the box is right or left facing
-    if (tempX > width/2) {
-      //right side of screen
-      orientationIndent = -rectWidth;
-      tempIconX =  orientationIndent + borderWidth;
-      tempTextX =  orientationIndent + borderWidth*2 + displayIconSize;
     } else {
-      //left side of screen
-      orientationIndent = 0;
-      tempIconX =   borderWidth;
-      tempTextX =  borderWidth*2 + displayIconSize;
+      state.displayState();
     }
-    //checks if the box is out of stage
-    if (tempY + rectHeight+tempGenericY >= height) {
-      //moves the box up so that it sits neatly above the stage
-      tempGenericY = height -(rectHeight + tempY +tempGenericY);
-    }
+  } else {
+    boolean hoverNow= false;
+    TweetCircle twtToSend= null; 
+    int xOreintation = 0;
+    fill(backgroundColour);
+    stroke(backgroundColour);
+    rect(0, 0, width, height);
+    stroke(255, 255, 255);
+    line(width/2, 0, width/2, height);
+    stroke(backgroundColour);
 
-    stroke(153, 157, 163);
-    fill(255, 255, 255);//rectangle colour
-    rect( tempX + orientationIndent, tempY+tempGenericY, rectWidth, rectHeight);
-    stroke(212, 40, 40);
-    fill(0, 0, 0);// text colour
-    text(twtCrcl.getTweet(), tempX+tempTextX, tempY+tempGenericY, textWidth, rectHeight); 
-    if (displayIcon != null) {
-      image(displayIcon, tempX+tempIconX, tempY+tempGenericY+3, displayIconSize, displayIconSize);
-    }
-  }
-
-  //Generates the tweet circles
-  void generateCircles(String searchString, int min, int max, color colour) {
-
-    getNewTweets(searchString);
-    currentTweet = 0;
-    PVector randcoords;
-    int circleWidth = 25;
-    int largestNumber= 0;
-    // find highest no of retweets
-    while (currentTweet < tweets.size ())
-    {
-      Status status = tweets.get(currentTweet);
-      if ( status.getRetweetCount() > largestNumber) {
-        largestNumber = status.getRetweetCount();
-      }
-      currentTweet++;
-    }
-    currentTweet = 0; 
-    while (currentTweet < tweets.size ())
-    {
-      //generate points that dont collide but are random and different each time
-
-        randcoords  = new PVector(random(min, max), random(35, height-35));
-      Status status = tweets.get(currentTweet);
-
-      //check
-      if (checkHIT(randcoords, circleWidth)) {
-        //make circle
-        TweetCircle twtcrcl = new TweetCircle(status, randcoords, circleWidth, largestNumber, colour, backgroundColour);
-        currentTweet++;
-        circles.add(twtcrcl);
-      } else {
-        int c1 = 0;
-        while (checkHIT (randcoords, circleWidth) == false) {
-          randcoords  = new PVector(random(min, max), random(35, height-35));
-
-          //this is here because processing crashes after a certain number of loops, however im 90% sure i dont need it since i fixed some things 
-          //if(c1 > 20){println("over20");break;}else{c1++;}
-        }
-        TweetCircle twtcrcl = new TweetCircle(status, randcoords, circleWidth, largestNumber, colour, backgroundColour);
-        currentTweet++;
-        circles.add(twtcrcl);
-      }
-    }
-
+    //check for hover
     for (int i =0; i < circles.size (); i++) {
       TweetCircle twtCrcl = circles.get(i);
+      twtCrcl.dislpay();// draw function
+      float tempX = twtCrcl.getX();
+      float tempY = twtCrcl.getY();
+      float circleWidth = twtCrcl.getWIDTH();
+      if ( dist(mouseX, mouseY, tempX, tempY) <= circleWidth) {
+        hoverNow = true;
+        twtToSend = twtCrcl;
+      }
+    }
+
+    if (hoverNow) {
+      drawHInfo(twtToSend);
     }
   }
-  void getNewTweets(String searchString)
+}
+//the thing that draws the box
+void drawHInfo(TweetCircle twtCrcl) {
+  //temp variables
+  float tempX = twtCrcl.getX();
+  float tempY = twtCrcl.getY();
+  float orientationIndent = 0;
+  float borderWidth = 3;
+  //displayIconSize is icon width
+  float tempIconX;
+  float tempGenericY = borderWidth;
+  float tempOutOfFrameY = 0;
+  float tempTextX;
+  displayIcon = twtCrcl.getImage();
+  //check if the box is right or left facing
+  if (tempX > width/2) {
+    //right side of screen
+    orientationIndent = -rectWidth;
+    tempIconX =  orientationIndent + borderWidth;
+    tempTextX =  orientationIndent + borderWidth*2 + displayIconSize;
+  } else {
+    //left side of screen
+    orientationIndent = 0;
+    tempIconX =   borderWidth;
+    tempTextX =  borderWidth*2 + displayIconSize;
+  }
+  //checks if the box is out of stage
+  if (tempY + rectHeight+tempGenericY >= height) {
+    //moves the box up so that it sits neatly above the stage
+    tempGenericY = height -(rectHeight + tempY +tempGenericY);
+  }
+  textSize(12);
+  textAlign(LEFT, TOP);
+  stroke(153, 157, 163);
+  fill(255, 255, 255);//rectangle colour
+  rect( tempX + orientationIndent, tempY+tempGenericY, rectWidth, rectHeight);
+  stroke(212, 40, 40);
+  fill(0, 0, 0);// text colour
+  text(twtCrcl.getTweet(), tempX+tempTextX, tempY+tempGenericY, textWidth, rectHeight); 
+  if (displayIcon != null) {
+    image(displayIcon, tempX+tempIconX, tempY+tempGenericY+3, displayIconSize, displayIconSize);
+  }
+}
+
+//Generates the tweet circles
+void generateCircles(String searchString, int min, int max, color colour) {
+
+  getNewTweets(searchString);
+  currentTweet = 0;
+  PVector randcoords;
+  int circleWidth = 25;
+  int largestNumber= 0;
+  // find highest no of retweets
+  while (currentTweet < tweets.size ())
   {
-    try
-    {
-      Query query = new Query(searchString);
-
-      QueryResult result = twitter.search(query);
-
-      tweets = result.getTweets();
+    Status status = tweets.get(currentTweet);
+    if ( status.getRetweetCount() > largestNumber) {
+      largestNumber = status.getRetweetCount();
     }
-    catch (TwitterException te)
-    {
-      System.out.println("Failed to search tweets: " + te.getMessage());
-      System.exit(-1);
+    currentTweet++;
+  }
+  currentTweet = 0; 
+  while (currentTweet < tweets.size ())
+  {
+    //generate points that dont collide but are random and different each time
+
+      randcoords  = new PVector(random(min, max), random(35, height-35));
+    Status status = tweets.get(currentTweet);
+
+    //check
+    if (checkHIT(randcoords, circleWidth)) {
+      //make circle
+      TweetCircle twtcrcl = new TweetCircle(status, randcoords, circleWidth, largestNumber, colour, backgroundColour);
+      currentTweet++;
+      circles.add(twtcrcl);
+    } else {
+      int c1 = 0;
+      while (checkHIT (randcoords, circleWidth) == false) {
+        randcoords  = new PVector(random(min, max), random(35, height-35));
+
+        //this is here because processing crashes after a certain number of loops, however im 90% sure i dont need it since i fixed some things 
+        //if(c1 > 20){println("over20");break;}else{c1++;}
+      }
+      TweetCircle twtcrcl = new TweetCircle(status, randcoords, circleWidth, largestNumber, colour, backgroundColour);
+      currentTweet++;
+      circles.add(twtcrcl);
     }
   }
+
+  for (int i =0; i < circles.size (); i++) {
+    TweetCircle twtCrcl = circles.get(i);
+  }
+}
+void getNewTweets(String searchString)
+{
+  try
+  {
+    Query query = new Query(searchString);
+
+    QueryResult result = twitter.search(query);
+
+    tweets = result.getTweets();
+  }
+  catch (TwitterException te)
+  {
+    System.out.println("Failed to search tweets: " + te.getMessage());
+    System.exit(-1);
+  }
+}
 

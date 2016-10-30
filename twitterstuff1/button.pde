@@ -15,8 +15,8 @@ class Button {
   String label;
 
   Button(int rectX, int rectY, int rectW, int rectH, String label) {
-    this.rectX = rectX;
-    this.rectY = rectY;
+    this.rectX = rectX- rectW;
+    this.rectY = rectY - rectH;
     this.rectW = rectW;
     this.rectH = rectH;
     this.label = label;

@@ -1,6 +1,6 @@
 public class StartState extends State {
   State nextState = new SearchState();
-
+  String type = "start";
   boolean stateDone = false;
   //  size= 800  600
 
@@ -13,13 +13,15 @@ public class StartState extends State {
   boolean getDone() {
     return stateDone;
   }
+  String getType(){
+   return type;
+  }
   void displayState() {
     fill(backgroundColour);
     stroke(backgroundColour);
     rect(0, 0, width, height);
     startButton.display();
     if (startButton.pressed()) {
-      println(" start pressed");
       stateDone = true;
     }
   }
