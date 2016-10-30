@@ -7,8 +7,8 @@ public class StartState extends State {
 
   Button startButton = new Button(800/2, 600/2, 100,45,"Start");
 //Button(int rectX, int rectY, int rectW, int rectH, String label) 
-  public State newState() {
-    return nextState;
+  public State newState() { 
+     return nextState;
   }
   boolean getDone() {
     return stateDone;
@@ -29,4 +29,3 @@ public class StartState extends State {
     }
   }
 }
-

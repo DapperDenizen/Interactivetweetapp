@@ -50,6 +50,7 @@ public class SearchState extends State {
     if (chooseButton.pressed()) {
       stateDone = true;
     }
+    
     //left buttons
     if (choice1Button.pressed()) {
        searchResults[0] = "Trump";
@@ -74,4 +75,3 @@ public class SearchState extends State {
     }
   }
 }
-
