@@ -6,29 +6,42 @@ to display buttons on any screen
 class Button {
   int rectX;
   int rectY;
-  int rectW = 100;
-  int rectH = 45;
-  color rectColor, rectHighlight;
+  int rectW;
+  int rectH;
+  color rectColour;
+  color rectHighlight;
+  color textColour;
+  color textHighlight;
   String label;
 
-  Button(int rectX, int rectY, String label) {
+  Button(int rectX, int rectY, int rectW, int rectH, String label) {
     this.rectX = rectX;
     this.rectY = rectY;
+    this.rectW = rectW;
+    this.rectH = rectH;
     this.label = label;
-    rectColor = color(200, 0, 0);
-    rectHighlight = color(255, 0, 0);
+    rectColour = color(255, 255, 255);
+    rectHighlight = color(196, 196, 196);
+    textColour = color(0, 0, 0);
+    textHighlight = color(255, 255, 255);
   }
   void display() {
+    stroke(255);
+    textSize(16);
+    textAlign(CENTER,CENTER);
     if (rectOver()) {
       fill(rectHighlight);
+      rect(rectX, rectY, rectW, rectH);
+      //ellipse(rectX, rectY, rectH, rectH);
+      fill(textHighlight);
+      text(label, rectX, rectY,rectW,rectH);
+      //text(str, x1, y1, x2, y2)
     } else {
-      fill(rectColor);
+      fill(rectColour);
+      rect(rectX, rectY, rectW, rectH);
+      fill(textColour);
+      text(label, rectX, rectY,rectW,rectH);
     }
-    stroke(255);
-    text(label, rectX, rectY);
-    rect(rectX, rectY, rectW, rectH);
-   // mousePressed();
-    //pressed();
   }
   private boolean rectOver() {
     if (mouseX >= rectX && mouseX <= rectX+rectW &&
@@ -43,7 +56,6 @@ class Button {
   
   public boolean pressed() {
     if (mousePressed && rectOver()) {
-      //println("pressed");
       return true;
     }else { return false;}
   }

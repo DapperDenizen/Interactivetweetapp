@@ -5,8 +5,8 @@ public class StartState extends State {
   //  size= 800  600
 
 
-  Button startButton = new Button(800/2, 600/2, "start");
-
+  Button startButton = new Button(800/2, 600/2, 100,45,"Start");
+//Button(int rectX, int rectY, int rectW, int rectH, String label) 
   public State newState() {
     return nextState;
   }

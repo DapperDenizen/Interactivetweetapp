@@ -3,8 +3,8 @@ public class SearchState extends State {
   State nextState = null;
   
   //  size= 800  600
-  Button chooseButton = new Button(800/4, 600/2, "Choose");
-
+  Button chooseButton = new Button(800/4, 600/2,100,45, "Choose");
+ 
   public State newState() {
     return nextState;
   }
