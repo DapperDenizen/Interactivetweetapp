@@ -19,7 +19,7 @@ public class SearchState extends State {
   //right~ democrat
   Button choice4Button = new Button(600, 300, 100, 45, "Clinton");
   Button choice5Button = new Button(600, 350, 100, 45, "#ImWithHer");
-  Button choice6Button = new Button(600, 400, 100, 45, "CrookedHilary");
+  Button choice6Button = new Button(600, 400, 100, 45, "#CrookedHilary");
 
   public State newState() {
     return nextState;
@@ -69,7 +69,7 @@ public class SearchState extends State {
       searchResults[1] = "imwithher";
        demChose = true;
     } else if (choice6Button.pressed()) {
-      searchResults[1] = "CrookedHilary";
+      searchResults[1] = "#Crookedhilary";
        demChose = true;
     }
   }

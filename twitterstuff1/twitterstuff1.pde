@@ -111,7 +111,7 @@ void draw()
     if (state.getDone()) {
       if (state.getType().equals("search")) {
         String[] tempArray = state.getStrings();
-        println(tempArray);
+        //println(tempArray);
         // get strings
         democratString = tempArray[1];
         republicanString = tempArray[0];
@@ -217,6 +217,7 @@ void generateCircles(String searchString, int min, int max, color colour) {
     currentTweet++;
   }
   currentTweet = 0; 
+  //println(tweets.size());
   while (currentTweet < tweets.size ())
   {
     //generate points that dont collide but are random and different each time

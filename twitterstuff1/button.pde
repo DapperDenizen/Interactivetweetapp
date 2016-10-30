@@ -13,6 +13,7 @@ class Button {
   color textColour;
   color textHighlight;
   String label;
+  int textSize;
 
   Button(int rectX, int rectY, int rectW, int rectH, String label) {
     this.rectX = rectX- rectW;
@@ -24,10 +25,13 @@ class Button {
     rectHighlight = color(196, 196, 196);
     textColour = color(0, 0, 0);
     textHighlight = color(255, 255, 255);
+    if(label.length() > 10){textSize = 11;}else{
+    textSize = 16;
+    }
   }
   void display() {
     stroke(255);
-    textSize(16);
+    textSize(textSize);
     textAlign(CENTER,CENTER);
     if (rectOver()) {
       fill(rectHighlight);
