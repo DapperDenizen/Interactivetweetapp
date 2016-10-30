@@ -10,5 +10,6 @@ abstract class State {
   abstract State newState();
   abstract boolean getDone();
   abstract String getType();
+  abstract String[] getStrings();
 }
 

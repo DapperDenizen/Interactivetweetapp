@@ -110,8 +110,11 @@ void draw()
   if (state != null) {
     if (state.getDone()) {
       if (state.getType().equals("search")) {
+        String[] tempArray = state.getStrings();
+        println(tempArray);
         // get strings
-        
+        democratString = tempArray[1];
+        republicanString = tempArray[0];
         //call 1 (dem)
         generateCircles(democratString, 35, width/2-35, democratBlue);
         //call 2 (republic)

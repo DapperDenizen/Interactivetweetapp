@@ -16,6 +16,9 @@ public class StartState extends State {
   String getType(){
    return type;
   }
+   String[] getStrings() {
+    return null;
+  }
   void displayState() {
     fill(backgroundColour);
     stroke(backgroundColour);
