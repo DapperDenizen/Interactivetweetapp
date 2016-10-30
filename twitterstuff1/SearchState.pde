@@ -13,13 +13,13 @@ public class SearchState extends State {
   //button to continue to next state
   Button chooseButton = new Button(800/2, 600/3, 100, 45, "Choose");
   //left~ democrat
-  Button choice1Button = new Button(800/4, 300, 100, 45, "Trump");
-  Button choice2Button = new Button(800/4, 350, 100, 45, "#MAGA");
-  Button choice3Button = new Button(800/4, 400, 100, 45, "Dumpf");
+  Button choice1Button = new Button(600, 300, 100, 45, "Trump");
+  Button choice2Button = new Button(600, 350, 100, 45, "#MAGA");
+  Button choice3Button = new Button(600, 400, 100, 45, "Dumpf");
   //right~ democrat
-  Button choice4Button = new Button(600, 300, 100, 45, "Clinton");
-  Button choice5Button = new Button(600, 350, 100, 45, "#ImWithHer");
-  Button choice6Button = new Button(600, 400, 100, 45, "#CrookedHilary");
+  Button choice4Button = new Button(200, 300, 100, 45, "Clinton");
+  Button choice5Button = new Button(200, 350, 100, 45, "#ImWithHer");
+  Button choice6Button = new Button(200, 400, 100, 45, "#CrookedHilary");
 
   public State newState() {
     return nextState;
