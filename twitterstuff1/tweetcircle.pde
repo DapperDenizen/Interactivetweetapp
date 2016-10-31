@@ -28,12 +28,6 @@ public class TweetCircle {
   public float getWIDTH() {
     return circleWidth;
   }
-  public String getTweet() {
-    return status.getText();
-  }
-  public PImage getImage() {
-    return loadImage(status.getUser().getMiniProfileImageURL());
-  }
   public void doHover(){
     hInfo.display();
   }
