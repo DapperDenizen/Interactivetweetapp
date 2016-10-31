@@ -254,6 +254,7 @@ void generateCircles(String searchString, int min, int max, color colour) {
     TweetCircle twtCrcl = circles.get(i);
   }
 }
+//below code taken from CODASIGNS tutorial link: http://codasign.com/tutorials/processing-and-twitter/
 void getNewTweets(String searchString)
 {
   try
