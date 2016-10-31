@@ -24,9 +24,12 @@ color democratBlue = color(24, 81, 173);
 color rebulicanRed = color(214, 19, 19);
 color backgroundColour = color(0, 0, 0);
 boolean stateOn;
-int buttonX = 800-20;
-int buttonY = 20;
-Button backButton = new Button(buttonX, buttonY, 20, 20, "<");
+int backButtonX = 800-20;
+int backButtonY = 20;
+int faqButtonX = 800-40;
+int faqButtonY = 20;
+Button backButton = new Button(backButtonX, backButtonY, 20, 20, "<");
+Button faqButton = new Button(faqButtonX, faqButtonY, 20, 20, "?");
 //Button(int rectX, int rectY, int rectW, int rectH, String label)
 State state;
 void setup()
@@ -114,6 +117,9 @@ void draw()
     circles = new ArrayList();
     state = new SearchState();
   }
+  if(faqButton.pressed()){
+    state = new Help();
+  }
   if (state != null) {
     if (state.getDone()) {
       if (state.getType().equals("search")) {
@@ -162,6 +168,7 @@ void draw()
       drawHInfo(twtToSend);
     }
     backButton.display();
+    faqButton.display();
   }
 }
 //the thing that draws the box

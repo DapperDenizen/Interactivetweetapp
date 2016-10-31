@@ -1,10 +1,10 @@
 class Help extends State{
     Button back = new Button(700, 500, 100, 45, "Back");
     boolean stateDone = false;
-    State nextState = new SearchState();
+    State nextState = null;
     String type = "FAQ";
     
-    FAQ(){}
+    Help(){}
     
     public State newState() {
       return nextState;
