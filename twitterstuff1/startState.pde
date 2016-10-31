@@ -2,11 +2,7 @@ public class StartState extends State {
   State nextState = new SearchState();
   String type = "start";
   boolean stateDone = false;
-  //  size= 800  600
-
-
   Button startButton = new Button(800/2, 600/2, 100,45,"Start");
-//Button(int rectX, int rectY, int rectW, int rectH, String label) 
   public State newState() { 
      return nextState;
   }
@@ -23,6 +19,9 @@ public class StartState extends State {
     fill(backgroundColour);
     stroke(backgroundColour);
     rect(0, 0, width, height);
+    fill(255,255,255);
+    textSize(20);
+    text("Application Name",300,200);
     startButton.display();
     if (startButton.pressed()) {
       stateDone = true;

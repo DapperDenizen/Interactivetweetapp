@@ -4,14 +4,18 @@ public class SearchState extends State {
   boolean allChose = false;
   boolean repChose = false;
   boolean demChose = false;
-  String type = "search";
+    int textW = 800;
+  int textH  =170; 
+  int textX = 400 - textW/2;
+  int textY = 0;
+  String textWords = "Below are the choices for what you would like to search. \n Each of these choices relates to either the Democratic candidate or the Republican candidate \n choose one of each and then click the \" choose \" button to continue.";
+    String type = "search";
   String[] searchResults = { 
     "Default value", "Default value"
   };
 
-  //  size= 800  600
   //button to continue to next state
-  Button chooseButton = new Button(800/2, 600/3, 100, 45, "Choose");
+  Button chooseButton = new Button(800/2, 200, 100, 45, "Choose");
   //left~ democrat
   Button choice1Button = new Button(600, 300, 100, 45, "Trump");
   Button choice2Button = new Button(600, 350, 100, 45, "#MAGA");
@@ -37,7 +41,9 @@ public class SearchState extends State {
     fill(backgroundColour);
     stroke(backgroundColour);
     rect(0, 0, width, height);
-    if(repChose && demChose){allChose = true;}
+    if (repChose && demChose) {
+      allChose = true;
+    }
     if (allChose) {
       chooseButton.display();
     }
@@ -50,28 +56,33 @@ public class SearchState extends State {
     if (chooseButton.pressed()) {
       stateDone = true;
     }
-    
+
     //left buttons
     if (choice1Button.pressed()) {
-       searchResults[0] = "Trump";
-       repChose = true;
+      searchResults[0] = "Trump";
+      repChose = true;
     } else if (choice2Button.pressed()) {
-       searchResults[0] = "MAGA";
-       repChose = true;
+      searchResults[0] = "MAGA";
+      repChose = true;
     } else if (choice3Button.pressed()) {
-       searchResults[0] = "Dumpf";
-       repChose = true;
+      searchResults[0] = "Dumpf";
+      repChose = true;
     }
     // right button
     if (choice4Button.pressed()) {
-       searchResults[1] = "Clinton";
-       demChose = true;
+      searchResults[1] = "Clinton";
+      demChose = true;
     } else if (choice5Button.pressed()) {
       searchResults[1] = "imwithher";
-       demChose = true;
+      demChose = true;
     } else if (choice6Button.pressed()) {
       searchResults[1] = "#Crookedhilary";
-       demChose = true;
+      demChose = true;
     }
+    fill(255, 255, 255);
+    textAlign(CENTER,CENTER);
+    textSize(20);
+    text(textWords, textX, textY, textW, textH);
   }
 }
+

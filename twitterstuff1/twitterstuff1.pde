@@ -30,12 +30,11 @@ int faqButtonX = 800-40;
 int faqButtonY = 20;
 Button backButton = new Button(backButtonX, backButtonY, 20, 20, "<");
 Button faqButton = new Button(faqButtonX, faqButtonY, 20, 20, "?");
-//Button(int rectX, int rectY, int rectW, int rectH, String label)
 State state;
 void setup()
 {
   state = new StartState();
-  //state = new SearchState();
+
 
   circles = new ArrayList();
   size(800, 600);
@@ -52,11 +51,6 @@ void setup()
   TwitterFactory tf = new TwitterFactory(cb.build());
 
   twitter = tf.getInstance();
-
-  //call 1
-  //generateCircles(democratString, 35, width/2-35, democratBlue);
-  //call 2
-  //generateCircles(republicanString, width/2+35, width-35, rebulicanRed);
 }
 
 
@@ -124,7 +118,7 @@ void draw()
     if (state.getDone()) {
       if (state.getType().equals("search")) {
         String[] tempArray = state.getStrings();
-        //println(tempArray);
+   
         // get strings
         democratString = tempArray[1];
         republicanString = tempArray[0];
@@ -252,9 +246,6 @@ void generateCircles(String searchString, int min, int max, color colour) {
       int c1 = 0;
       while (checkHIT (randcoords, circleWidth) == false) {
         randcoords  = new PVector(random(min, max), random(35, height-35));
-
-        //this is here because processing crashes after a certain number of loops, however im 90% sure i dont need it since i fixed some things 
-        //if(c1 > 20){println("over20");break;}else{c1++;}
       }
       TweetCircle twtcrcl = new TweetCircle(status, randcoords, circleWidth, largestNumber, colour, backgroundColour);
       currentTweet++;

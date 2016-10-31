@@ -16,7 +16,6 @@ public class TweetCircle {
     coordY = coords.y;
     this.circleWidth = map(status.getRetweetCount(), 0, maxRetweets, circleWidth, 55);
     ellipse(coordX, coordY, circleWidth, circleWidth);
-    println(twt.getText());
   }
   public float getX() {
     return coordX;
