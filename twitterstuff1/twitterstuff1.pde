@@ -118,7 +118,7 @@ void draw()
     state = new SearchState();
   }
   if(faqButton.pressed()){
-    state = new Help();
+    state = new Help(democratString,republicanString);
   }
   if (state != null) {
     if (state.getDone()) {
