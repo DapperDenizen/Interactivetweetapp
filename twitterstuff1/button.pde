@@ -60,8 +60,16 @@ class Button {
   
   public boolean pressed() {
     if (mousePressed && rectOver()) {
-      rectColour = rectHighlight;
       return true;
-    }else { return false;}
+    }else {return false;}
+  }
+  
+  public void changeColor(){
+     rectColour = rectHighlight;
+     textColour = textHighlight; 
+  }
+  public void returnColor(){
+     rectColour = color(255, 255, 255);
+     textColour = color(0, 0, 0);
   }
 }

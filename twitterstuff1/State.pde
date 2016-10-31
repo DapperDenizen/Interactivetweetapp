@@ -12,4 +12,3 @@ abstract class State {
   abstract String getType();
   abstract String[] getStrings();
 }
-

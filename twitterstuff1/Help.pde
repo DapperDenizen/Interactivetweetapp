@@ -51,4 +51,3 @@ class Help extends State {
     }
   }
 }
-

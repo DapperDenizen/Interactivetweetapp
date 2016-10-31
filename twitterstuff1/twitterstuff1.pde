@@ -238,4 +238,3 @@ void getNewTweets(String searchString)
     System.exit(-1);
   }
 }
-

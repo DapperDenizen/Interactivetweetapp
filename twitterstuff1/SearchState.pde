@@ -59,23 +59,41 @@ public class SearchState extends State {
 
     //left buttons
     if (choice1Button.pressed()) {
+      choice1Button.changeColor();
+      choice2Button.returnColor();
+      choice3Button.returnColor();
       searchResults[0] = "Trump";
       repChose = true;
     } else if (choice2Button.pressed()) {
+      choice2Button.changeColor();
+      choice1Button.returnColor();
+      choice3Button.returnColor();
       searchResults[0] = "MAGA";
       repChose = true;
     } else if (choice3Button.pressed()) {
+      choice3Button.changeColor();
+      choice1Button.returnColor();
+      choice2Button.returnColor();
       searchResults[0] = "Dumpf";
       repChose = true;
     }
     // right button
     if (choice4Button.pressed()) {
+      choice4Button.changeColor();
+      choice5Button.returnColor();
+      choice6Button.returnColor();
       searchResults[1] = "Clinton";
       demChose = true;
     } else if (choice5Button.pressed()) {
+      choice4Button.returnColor();
+      choice5Button.changeColor();
+      choice6Button.returnColor();
       searchResults[1] = "imwithher";
       demChose = true;
     } else if (choice6Button.pressed()) {
+      choice4Button.returnColor();
+      choice5Button.returnColor();
+      choice6Button.changeColor();
       searchResults[1] = "#Crookedhilary";
       demChose = true;
     }
@@ -85,4 +103,3 @@ public class SearchState extends State {
     text(textWords, textX, textY, textW, textH);
   }
 }
-

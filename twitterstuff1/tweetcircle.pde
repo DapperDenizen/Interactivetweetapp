@@ -41,4 +41,3 @@ public class TweetCircle {
     ellipse(coordX, coordY, circleWidth, circleWidth);
   }
 }
-
