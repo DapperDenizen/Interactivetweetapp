@@ -232,14 +232,16 @@ void generateCircles(String searchString, int min, int max, color colour) {
     currentTweet++;
   }
   currentTweet = 0; 
-  println(tweets.size());
+
   while (currentTweet < tweets.size ())
   {
     //generate points that dont collide but are random and different each time
 
       randcoords  = new PVector(random(min, max), random(35, height-35));
     Status status = tweets.get(currentTweet);
-
+    if(status.isRetweet()){
+      status = status.getRetweetedStatus();
+    }
     //check
     if (checkHIT(randcoords, circleWidth)) {
       //make circle
