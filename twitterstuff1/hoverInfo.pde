@@ -1,25 +1,25 @@
 public class HoverInfo {
   TweetCircle twtCrcl;
-   //temp variables
-    float tempX;
-    float tempY;                                                             
-    float orientationIndent = 0;
-    float borderWidth = 3;
-    float tempIconX;
-    float tempGenericY = borderWidth;
-    float tempOutOfFrameY = 0;
-    float tempTextX;
-    PImage displayIcon;
-    String circleText;
-  
-HoverInfo(float tempX, float tempY, String circleText ,PImage displayIcon){
-this.tempX = tempX;
-this.tempY = tempY;
-this.displayIcon = displayIcon;
-this.circleText = circleText;
-}
-void display(){
-if (tempX > width/2) {
+  //temp variables
+  float tempX;
+  float tempY;                                                             
+  float orientationIndent = 0;
+  float borderWidth = 3;
+  float tempIconX;
+  float tempGenericY = borderWidth;
+  float tempOutOfFrameY = 0;
+  float tempTextX;
+  PImage displayIcon;
+  String circleText;
+
+  HoverInfo(float tempX, float tempY, String circleText, PImage displayIcon) {
+    this.tempX = tempX;
+    this.tempY = tempY;
+    this.displayIcon = displayIcon;
+    this.circleText = circleText;
+  }
+  void display() {
+    if (tempX > width/2) {
       //right side of screen
       orientationIndent = -rectWidth;
       tempIconX =  orientationIndent + borderWidth;

@@ -90,7 +90,9 @@ private boolean checkHIT(PVector me, int givenWidth) {
         me.x +w <= twtCrcl.getX() +w && 
         //height
       me.y -w >= twtCrcl.getY() -w &&  
-        me.y -w <= twtCrcl.getY() +w 
+        me.y -w <= twtCrcl.getY() +w ||
+        //button        
+       dist(me.x, me.y, 618, 62) <= 60
 
         ) {
 
@@ -152,8 +154,12 @@ void draw()
       float tempY = twtCrcl.getY();
       float circleWidth = twtCrcl.getWIDTH();
       if ( dist(mouseX, mouseY, tempX, tempY) <= circleWidth) {
+        if(mousePressed){
+          state = new ViewState(twtCrcl.getStatus());
+        }else{
         hoverNow = true;
         twtToSend = twtCrcl;
+        }
       }
     }
 
