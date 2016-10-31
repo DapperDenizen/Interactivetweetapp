@@ -6,8 +6,8 @@ class Help extends State {
   String republicanString;
   String[] helpText = {
     "FAQ", 
-    "on the LEFT in blue are the circles representing the Democratic nominee Hilary Clinton, the key word you chose to search for is : ", 
-    "on the RIGHT in red are the circles representing the Republican nominee Donald Trump, the key word you chose to search for is : ", 
+    "on the LEFT in blue are the circles representing the Democratic nominee Hilary Clinton, the key word you chose to search for is", 
+    "on the RIGHT in red are the circles representing the Republican nominee Donald Trump, the key word you chose to search for is", 
     "Hover over the circle to see the tweet it represents, each circle's size is based on the number of retweets!"
   };
   int rectX = 100;
@@ -44,7 +44,7 @@ class Help extends State {
     fill(255, 255, 255);
     //stroke(255,0,0);
     textAlign(CENTER);
-    text(helpText[0]+"\n"+helpText[1] + republicanString+"\n"+helpText[2] + democratString+"\n"+helpText[3], textX, textY, textW, textH);
+    text(helpText[0]+"\n"+helpText[1] +"\n \""+ republicanString+"\" \n"+helpText[2] +"\n \" "+  democratString+" \" \n"+helpText[3], textX, textY, textW, textH);
     exitButton.display();
     if (exitButton.pressed()) {
       stateDone = true;

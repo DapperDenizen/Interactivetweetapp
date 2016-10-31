@@ -8,7 +8,7 @@ public class SearchState extends State {
   int textH  =170; 
   int textX = 400 - textW/2;
   int textY = 0;
-  String textWords = "Below are the choices for what you would like to search. \n Each of these choices relates to either the Democratic candidate or the Republican candidate \n choose one of each and then click the \" choose \" button to continue.";
+  String textWords = "Below are the choices for what you would like to search. \n Each of these choices relates to either the Democratic candidate or the Republican candidate \n choose one of each and then click the \" Choose \" button to continue.";
   String type = "search";
   String[] searchResults = { 
     "Default value", "Default value"

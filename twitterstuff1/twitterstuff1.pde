@@ -125,12 +125,10 @@ void draw()
         democratString = tempArray[1];
         republicanString = tempArray[0];
         //call 1 (dem)
-        println("making democrats circles");
         generateCircles(democratString, 35, width/2-35, democratBlue);
         //call 2 (republic)
-        pointOfSplit = circles.size();
+        pointOfSplit = circles.size();// this figures out where dem tweets end and rep tweets start so we can cut down on loading time
         generateCircles(republicanString, width/2+35, width-35, rebulicanRed);
-        println("making Republican circles");
       }
       state = state.newState();
       if (state != null) {
