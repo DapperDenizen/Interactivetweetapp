@@ -180,7 +180,7 @@ void generateCircles(String searchString, int min, int max, color colour) {
   getNewTweets(searchString);
   currentTweet = 0;
   PVector randcoords;
-  int circleWidth = 25;
+  int circleWidth = 30;
   int largestNumber= 0;
   // find highest no of retweets
   while (currentTweet < tweets.size ())
