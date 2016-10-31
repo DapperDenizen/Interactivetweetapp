@@ -27,6 +27,7 @@ int backButtonX = 800-20;
 int backButtonY = 20;
 int faqButtonX = 800-40;
 int faqButtonY = 20;
+int pointOfSplit = 0;
 Button backButton = new Button(backButtonX, backButtonY, 20, 20, "<");
 Button faqButton = new Button(faqButtonX, faqButtonY, 20, 20, "?");
 State state;
@@ -57,7 +58,7 @@ void setup()
 private boolean checkHIT(PVector me, int givenWidth) {
   int w = givenWidth+ 10;
   if (!(circles.isEmpty())) {
-    for (int i =0; i < circles.size (); i++) {
+    for (int i = pointOfSplit; i < circles.size (); i++) {
       TweetCircle twtCrcl = circles.get(i);
       if (
 
@@ -124,9 +125,12 @@ void draw()
         democratString = tempArray[1];
         republicanString = tempArray[0];
         //call 1 (dem)
+        println("making democrats circles");
         generateCircles(democratString, 35, width/2-35, democratBlue);
         //call 2 (republic)
+        pointOfSplit = circles.size();
         generateCircles(republicanString, width/2+35, width-35, rebulicanRed);
+        println("making Republican circles");
       }
       state = state.newState();
       if (state != null) {
@@ -187,8 +191,7 @@ void generateCircles(String searchString, int min, int max, color colour) {
     }
     currentTweet++;
   }
-  currentTweet = 0; 
-
+  currentTweet = 0;
   while (currentTweet < tweets.size ())
   {
     //generate points that dont collide but are random and different each time
