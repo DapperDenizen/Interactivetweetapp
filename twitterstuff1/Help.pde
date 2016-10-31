@@ -6,7 +6,7 @@ class Help extends State {
   String republicanString;
   String[] helpText = {
     "FAQ", 
-    "on the LEFT in blue are the circles representing the Democratic nominee Hilary Clinton, the key word you chose to search for is", 
+    "on the LEFT in blue are the circles representing the Democratic nominee hillary Clinton, the key word you chose to search for is", 
     "on the RIGHT in red are the circles representing the Republican nominee Donald Trump, the key word you chose to search for is", 
     "Hover over the circle to see the tweet it represents, each circle's size is based on the number of retweets!"
   };
