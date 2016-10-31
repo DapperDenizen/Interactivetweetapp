@@ -24,7 +24,10 @@ color democratBlue = color(24, 81, 173);
 color rebulicanRed = color(214, 19, 19);
 color backgroundColour = color(0, 0, 0);
 boolean stateOn;
-
+int buttonX = 800-20;
+int buttonY = 20;
+Button backButton = new Button(buttonX, buttonY, 20, 20, "<");
+//Button(int rectX, int rectY, int rectW, int rectH, String label)
 State state;
 void setup()
 {
@@ -107,6 +110,10 @@ private boolean checkHIT(PVector me, int givenWidth) {
 
 void draw()
 {
+  if ( backButton.pressed()) {
+    circles = new ArrayList();
+    state = new SearchState();
+  }
   if (state != null) {
     if (state.getDone()) {
       if (state.getType().equals("search")) {
@@ -154,6 +161,7 @@ void draw()
     if (hoverNow) {
       drawHInfo(twtToSend);
     }
+    backButton.display();
   }
 }
 //the thing that draws the box
@@ -217,7 +225,7 @@ void generateCircles(String searchString, int min, int max, color colour) {
     currentTweet++;
   }
   currentTweet = 0; 
-  //println(tweets.size());
+  println(tweets.size());
   while (currentTweet < tweets.size ())
   {
     //generate points that dont collide but are random and different each time

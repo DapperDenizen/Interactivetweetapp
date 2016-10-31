@@ -16,8 +16,8 @@ class Button {
   int textSize;
 
   Button(int rectX, int rectY, int rectW, int rectH, String label) {
-    this.rectX = rectX- rectW;
-    this.rectY = rectY - rectH;
+    this.rectX = rectX- (rectW/2);
+    this.rectY = rectY - (rectH/2);
     this.rectW = rectW;
     this.rectH = rectH;
     this.label = label;
