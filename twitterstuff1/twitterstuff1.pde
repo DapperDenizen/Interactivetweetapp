@@ -13,7 +13,6 @@ String republicanString = "Clinton";
 List<Status> tweets;
 int currentTweet;
 ArrayList<TweetCircle> circles;
-PImage displayIcon;
 int circleDiameter = 25;
 int displayIconSize = 40;// used as both icon size and extra text indent
 int textWidth = 210;
@@ -159,55 +158,12 @@ void draw()
     }
 
     if (hoverNow) {
-      drawHInfo(twtToSend);
+      twtToSend.doHover();
     }
     backButton.display();
     faqButton.display();
   }
 }
-//the thing that draws the box
-void drawHInfo(TweetCircle twtCrcl) {
-  //temp variables
-  float tempX = twtCrcl.getX();
-  float tempY = twtCrcl.getY();
-  float orientationIndent = 0;
-  float borderWidth = 3;
-  //displayIconSize is icon width
-  float tempIconX;
-  float tempGenericY = borderWidth;
-  float tempOutOfFrameY = 0;
-  float tempTextX;
-  displayIcon = twtCrcl.getImage();
-  //check if the box is right or left facing
-  if (tempX > width/2) {
-    //right side of screen
-    orientationIndent = -rectWidth;
-    tempIconX =  orientationIndent + borderWidth;
-    tempTextX =  orientationIndent + borderWidth*2 + displayIconSize;
-  } else {
-    //left side of screen
-    orientationIndent = 0;
-    tempIconX =   borderWidth;
-    tempTextX =  borderWidth*2 + displayIconSize;
-  }
-  //checks if the box is out of stage
-  if (tempY + rectHeight+tempGenericY >= height) {
-    //moves the box up so that it sits neatly above the stage
-    tempGenericY = height -(rectHeight + tempY +tempGenericY);
-  }
-  textSize(12);
-  textAlign(LEFT, TOP);
-  stroke(153, 157, 163);
-  fill(255, 255, 255);//rectangle colour
-  rect( tempX + orientationIndent, tempY+tempGenericY, rectWidth, rectHeight);
-  stroke(212, 40, 40);
-  fill(0, 0, 0);// text colour
-  text(twtCrcl.getTweet(), tempX+tempTextX, tempY+tempGenericY, textWidth, rectHeight); 
-  if (displayIcon != null) {
-    image(displayIcon, tempX+tempIconX, tempY+tempGenericY+3, displayIconSize, displayIconSize);
-  }
-}
-
 //Generates the tweet circles
 void generateCircles(String searchString, int min, int max, color colour) {
 
