@@ -91,14 +91,47 @@ private boolean checkHIT(PVector me, int givenWidth) {
         me.x +w <= twtCrcl.getX() +w && 
         //height
       me.y -w >= twtCrcl.getY() -w &&  
-        me.y -w <= twtCrcl.getY() +w ||
-        //button        
-       dist(me.x, me.y, 618, 62) <= 60
+        me.y -w <= twtCrcl.getY() +w 
 
         ) {
 
         return false;
-      }
+      }else if( 
+      
+        //TR
+      //width
+      me.x -28 >= 605 && 
+        me.x -28 <= 631 && 
+        //height
+      me.y +28 >= 37 &&  
+        me.y +28 <= 75 ||
+        //TL
+      //width
+      me.x +28 >= 605 && 
+        me.x +28 <= 631 && 
+        //height
+      me.y +28 >= 37 &&  
+        me.y +28 <= 75 ||
+
+        //BR
+      //width
+      me.x -28 >= 605 && 
+        me.x -28 <= 631 && 
+        //height
+      me.y -28 >= 37 &&  
+        me.y -28 <= 75 ||
+
+        //BL
+      //width
+      me.x +28 >= 605 && 
+        me.x +28 <= 631 && 
+        //height
+      me.y -28 >= 37 &&  
+        me.y -28 <= 75 )
+        {
+          return false;
+        }
+      
     }
 
     return true;
@@ -125,6 +158,7 @@ void draw()
         democratString = tempArray[1];
         republicanString = tempArray[0];
         //call 1 (dem)
+        pointOfSplit = 0;
         generateCircles(democratString, 35, width/2-35, democratBlue);
         //call 2 (republic)
         pointOfSplit = circles.size();// this figures out where dem tweets end and rep tweets start so we can cut down on loading time

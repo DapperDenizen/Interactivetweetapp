@@ -68,7 +68,7 @@ public class SearchState extends State {
       choice2Button.changeColor();
       choice1Button.returnColor();
       choice3Button.returnColor();
-      searchResults[0] = "MAGA";
+      searchResults[0] = "#MAGA";
       repChose = true;
     } else if (choice3Button.pressed()) {
       choice3Button.changeColor();
@@ -88,7 +88,7 @@ public class SearchState extends State {
       choice4Button.returnColor();
       choice5Button.changeColor();
       choice6Button.returnColor();
-      searchResults[1] = "imwithher";
+      searchResults[1] = "#ImWithHer";
       demChose = true;
     } else if (choice6Button.pressed()) {
       choice4Button.returnColor();

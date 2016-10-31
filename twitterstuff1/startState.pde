@@ -21,11 +21,11 @@ public class StartState extends State {
     rect(0, 0, width, height);
     fill(255,255,255);
     textSize(25);
-    textAlign(LEFT);
-    text("[Application Name] ",69,195,500, 50);
+    textAlign(RIGHT);
+    text("Tweet Around ",70,195,230, 50);
     textSize(20);
-    text("- an application by: ",300,200,200,50);
     textAlign(LEFT);
+    text("- an application by: ",300,200,200,50);
     text("Tex Turner \n Yusuke Kanai \n David Baka Lang \n Jason Fu",500,200, 200, 200);
     startButton.display();
     if (startButton.pressed()) {
