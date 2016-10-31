@@ -22,11 +22,11 @@ public class StartState extends State {
     fill(255,255,255);
     textSize(25);
     textAlign(RIGHT);
-    text("Tweet Around ",70,195,230, 50);
+    text("Tweets Around: The Election",8,195,390, 50);
     textSize(20);
     textAlign(LEFT);
-    text("- an application by: ",300,200,200,50);
-    text("Tex Turner \n Yusuke Kanai \n David Baka Lang \n Jason Fu",500,200, 200, 200);
+    text("- an interactive application by: ",400,200,400,50);
+    text("Tex Turner \n Yusuke Kanai \n David Baka Lang \n Jason Fu",500,250, 200, 200);
     startButton.display();
     if (startButton.pressed()) {
       stateDone = true;
