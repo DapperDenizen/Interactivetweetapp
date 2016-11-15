@@ -23,7 +23,6 @@ class Help extends State {
     this.republicanString = republicanString;
     this.democratString = democratString;
   }
-
   public State newState() {
     return nextState;
   }

@@ -64,12 +64,15 @@ class Button {
     }else {return false;}
   }
   
-  public void changeColor(){
+  public void changeColour(){
      rectColour = rectHighlight;
      textColour = textHighlight; 
   }
-  public void returnColor(){
+  public void returnColour(){
      rectColour = color(255, 255, 255);
      textColour = color(0, 0, 0);
+  }
+  public String getText(){
+  return label;
   }
 }

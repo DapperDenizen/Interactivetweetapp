@@ -1,4 +1,3 @@
-
 import twitter4j.conf.*;
 import twitter4j.*;
 import twitter4j.auth.*;

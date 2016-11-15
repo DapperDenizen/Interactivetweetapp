@@ -94,4 +94,3 @@ class ViewState extends State {
     }
   }
 }
-
