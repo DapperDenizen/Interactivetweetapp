@@ -105,6 +105,7 @@ public class SearchState extends State {
       }   
       for (int i = 0; i < buttons.size(); i++) {
         if (buttons.get(i).pressed()) {
+          println("button selected = " + i);
           fixButtons(buttons.get(i), i );
         }
       }
@@ -122,7 +123,7 @@ public class SearchState extends State {
         buttons.get(i).returnColour();
       }
       button.changeColour();
-    } else if (pos> midPointno) {
+    } else if (pos>= midPointno) {
       for (int i = midPointno; i < buttons.size(); i++) {
         println("returned colour  = " + i);
         buttons.get(i).returnColour();
