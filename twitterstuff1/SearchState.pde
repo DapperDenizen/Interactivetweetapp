@@ -13,7 +13,7 @@ public class SearchState extends State {
   String type = "search";
   String[] searchResults = { 
     "Default value", "Default value"
-  };
+  };// dem = 1, rep = 0
   boolean setButtons = false;
   //button to continue to next state
   Button chooseButton = new Button(800/2, 200, 100, 45, "Choose");  
@@ -105,7 +105,6 @@ public class SearchState extends State {
       }   
       for (int i = 0; i < buttons.size(); i++) {
         if (buttons.get(i).pressed()) {
-          println("button selected = " + i);
           fixButtons(buttons.get(i), i );
         }
       }
@@ -119,14 +118,16 @@ public class SearchState extends State {
   void fixButtons(Button button, int pos) {
     if ( pos < midPointno) {
       for (int i = 0; i < midPointno; i++) {
-        println("returned colour = " + i);
         buttons.get(i).returnColour();
+        searchResults[0] = button.getText();
+       repChose = true;
       }
       button.changeColour();
     } else if (pos>= midPointno) {
       for (int i = midPointno; i < buttons.size(); i++) {
-        println("returned colour  = " + i);
         buttons.get(i).returnColour();
+         searchResults[1] = button.getText();
+          demChose = true;
       }
       button.changeColour();
     }
