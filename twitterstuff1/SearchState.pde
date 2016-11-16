@@ -3,10 +3,15 @@ public class SearchState extends State {
   State nextState = null;
   boolean repChose = false;
   boolean demChose = false;
+  int testifbroke =0;
   int textW = 800;
   int textH  =170; 
-  int textX = 400 - textW/2;
-  int textY = 0;
+  int textX = (width/2) - textW/2;
+  int textY = 0 + 20;
+  int leftX = width/4;
+  int  rightX = width- leftX;
+  int buttonBaseY =height/4;
+  int chooseButtonY = width - width/4;
   ArrayList<Button> buttons = new ArrayList();
   int midPointno = 0;
   String textWords = "Below are the choices for what you would like to search. \n Each of these choices relates to either the Democratic candidate or the Republican candidate \n choose one of each and then click the \" Choose \" button to continue.";
@@ -15,24 +20,26 @@ public class SearchState extends State {
     "Default value", "Default value"
   };// dem = 1, rep = 0
   boolean setButtons = false;
-  //button to continue to next state
-  Button chooseButton = new Button(800/2, 200, 100, 45, "Choose");  
+  //? and < buttons
+  int backButtonX = width-20;
+  int faqButtonX = backButtonX -20;
+  Button chooseButton = new Button(width/2, height/2, 100, 45, "Choose");  
   //
-  Button choice1Button = new Button(600, 200, 120, 45, "#Election2016");
-  Button choice2Button = new Button(600, 250, 120, 45, "#Trump");
-  Button choice3Button = new Button(600, 300, 120, 45, "#MAGA");
-  Button choice4Button = new Button(600, 350, 120, 45, "#TrumpProtest");
-  Button choice5Button = new Button(600, 400, 120, 45, "#NotMyPresident");
-  Button choice6Button = new Button(600, 450, 120, 45, "#TrumpPresident");
-  Button choice7Button = new Button(600, 500, 120, 45, "#DumpTrump");
+  Button choice1Button = new Button(rightX, buttonBaseY, 120, 45, "#Election2016");
+  Button choice2Button = new Button(rightX, buttonBaseY +50, 120, 45, "#Trump");
+  Button choice3Button = new Button(rightX, buttonBaseY +100, 120, 45, "#MAGA");
+  Button choice4Button = new Button(rightX, buttonBaseY +150, 120, 45, "#TrumpProtest");
+  Button choice5Button = new Button(rightX, buttonBaseY +200, 120, 45, "#NotMyPresident");
+  Button choice6Button = new Button(rightX, buttonBaseY +250, 120, 45, "#TrumpPresident");
+  Button choice7Button = new Button(rightX, buttonBaseY +300, 120, 45, "#DumpTrump");
   //
-  Button choice8Button = new Button(200, 200, 120, 45, "#HealAmerica");
-  Button choice9Button = new Button(200, 250, 120, 45, "#Clinton");
-  Button choice10Button = new Button(200, 300, 120, 45, "#ImWithHer");
-  Button choice11Button = new Button(200, 350, 120, 45, "#HillaryRiots");
-  Button choice12Button = new Button(200, 400, 120, 45, "#HillaryForPrison");
-  Button choice13Button = new Button(200, 450, 120, 45, "#IllAlwaysBeWithHer");
-  Button choice14Button = new Button(200, 500, 120, 45, "#MajorityMatters");
+  Button choice8Button = new Button(leftX, buttonBaseY, 120, 45, "#HealAmerica");
+  Button choice9Button = new Button(leftX, buttonBaseY +50, 120, 45, "#Clinton");
+  Button choice10Button = new Button(leftX, buttonBaseY +100, 120, 45, "#ImWithHer");
+  Button choice11Button = new Button(leftX, buttonBaseY +150, 120, 45, "#HillaryRiots");
+  Button choice12Button = new Button(leftX, buttonBaseY +200, 120, 45, "#HillaryForPrison");
+  Button choice13Button = new Button(leftX, buttonBaseY +250, 120, 45, "#IllAlwaysBeWithHer");
+  Button choice14Button = new Button(leftX, buttonBaseY +300, 120, 45, "#MajorityMatters");
   //adds buttons to list
 
 
@@ -53,7 +60,6 @@ public class SearchState extends State {
   void displayState() {
     //initialise buttons <- this could be done more elegantly but its 11 and i want to cook my steak dinner 
     if (setButtons == false) {
-      println("set up");
       // left
       buttons.add(choice1Button);
       buttons.add(choice2Button);
@@ -101,7 +107,11 @@ public class SearchState extends State {
 
     if (mousePressed) {
       if (chooseButton.pressed()) {
-        stateDone = true;
+        if (repChose && demChose) {
+
+          stateDone = true;
+        }
+      } else {
       }   
       for (int i = 0; i < buttons.size(); i++) {
         if (buttons.get(i).pressed()) {
@@ -120,14 +130,14 @@ public class SearchState extends State {
       for (int i = 0; i < midPointno; i++) {
         buttons.get(i).returnColour();
         searchResults[0] = button.getText();
-       repChose = true;
+        repChose = true;
       }
       button.changeColour();
     } else if (pos>= midPointno) {
       for (int i = midPointno; i < buttons.size(); i++) {
         buttons.get(i).returnColour();
-         searchResults[1] = button.getText();
-          demChose = true;
+        searchResults[1] = button.getText();
+        demChose = true;
       }
       button.changeColour();
     }
