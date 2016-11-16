@@ -18,13 +18,14 @@ class ViewState extends State {
   int rectY = 50;
   int rectW = width -(rectX*2);
   int rectH = height -(rectY*2);
-  //users icon   
-  int iconX = 120;
-  int iconY = 60;
-  int iconSize = 100;
+  //icon Y
+    int iconY = 60;
   //user name    
-  int nameX = iconX +iconSize + genericIndent/5;
+  int nameX = width/2 - (nameSizeW/2);
   int nameY =iconY + genericIndent;
+   //users icon   
+  int iconSize = 100;
+  int iconX = nameX -iconSize - genericIndent/5;
   //user @
   int atX = nameX;
   int atY =nameY + nameSizeH + genericIndent/5;
@@ -40,9 +41,9 @@ class ViewState extends State {
   int tweetW = 400;
   int tweetH = 300;
   //line
-  int lineX1 = iconX;
+  int lineX1 = rectX +20;
   int lineY1 = infoY+ infoH + genericIndent;
-  int lineX2 = width - 120;
+  int lineX2 = width - lineX1 ;
   int lineY2 =  infoY+ infoH + genericIndent;
   PImage userIcon;
   Button exitButton = new Button(rectX+rectW+18, rectY+12, 25, 25, "X");
