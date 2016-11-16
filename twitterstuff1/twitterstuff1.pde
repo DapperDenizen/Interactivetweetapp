@@ -27,6 +27,8 @@ int mainButtonY = 20;
 int faqButtonX = backButtonX -20;
 int exitButtonX;
 int pointOfSplit = 0;
+int exitButtonXOne = 100 +width -200 +18;
+int exitButtonYOne = 50 + 12;
 Button backButton;
 Button faqButton;
 Button exitButton;
@@ -105,37 +107,11 @@ private boolean checkHIT(PVector me, int givenWidth) {
 
         return false;
       }else if( 
-      
-        //TR
-      //width
-      me.x -28 >= 605 && 
-        me.x -28 <= 631 && 
-        //height
-      me.y +28 >= 37 &&  
-        me.y +28 <= 75 ||
-        //TL
-      //width
-      me.x +28 >= 605 && 
-        me.x +28 <= 631 && 
-        //height
-      me.y +28 >= 37 &&  
-        me.y +28 <= 75 ||
-
-        //BR
-      //width
-      me.x -28 >= 605 && 
-        me.x -28 <= 631 && 
-        //height
-      me.y -28 >= 37 &&  
-        me.y -28 <= 75 ||
-
-        //BL
-      //width
-      me.x +28 >= 605 && 
-        me.x +28 <= 631 && 
-        //height
-      me.y -28 >= 37 &&  
-        me.y -28 <= 75 )
+me.x + w >= exitButtonXOne - 55 &&
+me.x - w <= exitButtonXOne + 55 &&
+      me.y -w >= exitButtonYOne -w &&  
+        me.y -w <= exitButtonYOne +w 
+)
         {
           return false;
         }
