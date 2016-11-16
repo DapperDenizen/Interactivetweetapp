@@ -16,8 +16,8 @@ class ViewState extends State {
   //pop up rectangle
   int rectX = 100;
   int rectY = 50;
-  int rectW = 600;
-  int rectH = 400;
+  int rectW = width -(rectX*2);
+  int rectH = height -(rectY*2);
   //users icon   
   int iconX = 120;
   int iconY = 60;

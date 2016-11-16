@@ -23,12 +23,13 @@ color rebulicanRed = color(214, 19, 19);
 color backgroundColour = color(0, 0, 0);
 boolean stateOn;
 int backButtonX = width-20;
-int backButtonY = 20;
+int mainButtonY = 20;
 int faqButtonX = backButtonX -20;
-int faqButtonY = 20;
+int exitButtonX;
 int pointOfSplit = 0;
 Button backButton;
 Button faqButton;
+Button exitButton;
 State state;
 void setup()
 {
@@ -53,10 +54,13 @@ void setup()
   twitter = tf.getInstance();
 }
  void setupButtons(){
-   backButtonX = width-20;
+   backButtonX = width-40;
   faqButtonX = backButtonX -20;
-backButton = new Button(backButtonX, backButtonY, 20, 20, "<");
-faqButton = new Button(faqButtonX, faqButtonY, 20, 20, "?");
+  exitButtonX = backButtonX +20;
+backButton = new Button(backButtonX, mainButtonY, 20, 20, "<");
+faqButton = new Button(faqButtonX, mainButtonY, 20, 20, "?");
+exitButton = new Button(exitButtonX, mainButtonY,20,20,"X");
+
  }
 //check if any points collide
 private boolean checkHIT(PVector me, int givenWidth) {
@@ -153,6 +157,9 @@ void draw()
   if(faqButton.pressed()){
     state = new Help(democratString,republicanString);
   }
+  if( exitButton.pressed()){
+    exit();
+  }
   if (state != null) {
     if (state.getDone()) {
       if (state.getType().equals("search")) {
@@ -207,6 +214,7 @@ void draw()
     }
     backButton.display();
     faqButton.display();
+    exitButton.display();
   }
 }
 //Generates the tweet circles
@@ -256,7 +264,7 @@ void generateCircles(String searchString, int min, int max, color colour) {
 //below code taken from CODASIGNS tutorial link: http://codasign.com/tutorials/processing-and-twitter/
 void getNewTweets(String searchString)
 {
-  println("getting tweets! tweets = " + searchString);
+ // println("getting tweets! tweets = " + searchString);
   try
   {
     Query query = new Query(searchString);
