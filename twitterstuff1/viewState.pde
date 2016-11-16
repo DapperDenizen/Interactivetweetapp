@@ -80,7 +80,6 @@ class ViewState extends State {
     textSize(17);
     image(userIcon, iconX, iconY, iconSize, iconSize);
     text(userName,nameX,nameY,nameSizeW, nameSizeH);
-    //println(userName+" , "+nameX+" , "+nameY+" , "+nameSizeW+" , "+ nameSizeH);
     textSize(14);
     text("@"+userAt,atX,atY,nameSizeW, nameSizeH);
     textSize(16);

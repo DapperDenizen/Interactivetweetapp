@@ -36,7 +36,8 @@ void setup()
 
 
   circles = new ArrayList();
-  size(800, 600);
+  fullScreen();
+  //size(800, 600);
   background(backgroundColour);
 
   //config builder
@@ -173,7 +174,6 @@ void draw()
   } else {
     boolean hoverNow= false;
     TweetCircle twtToSend= null; 
-    int xOreintation = 0;
     fill(backgroundColour);
     stroke(backgroundColour);
     rect(0, 0, width, height);
@@ -248,10 +248,6 @@ void generateCircles(String searchString, int min, int max, color colour) {
       circles.add(twtcrcl);
     }
   }
-
-  for (int i =0; i < circles.size (); i++) {
-    TweetCircle twtCrcl = circles.get(i);
-  }
 }
 //below code taken from CODASIGNS tutorial link: http://codasign.com/tutorials/processing-and-twitter/
 void getNewTweets(String searchString)
@@ -259,7 +255,7 @@ void getNewTweets(String searchString)
   try
   {
     Query query = new Query(searchString);
-
+    query.setCount(50);
     QueryResult result = twitter.search(query);
 
     tweets = result.getTweets();
